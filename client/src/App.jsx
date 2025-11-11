@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Grid from "./components/Grid";
-import Controls from "./components/Controls";
+import Controls from "./components/Control";
 import { getState, move, pick, drop, exportCSV } from "./api";
 
 export default function App() {

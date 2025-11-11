@@ -26,14 +26,14 @@ router.post('/move', (req, res) => {
     res.json({ position: robot.position });
 });
 
-//Pick up block
+//Pick up block!!!
 router.post('/pick', (req, res) => {
     //robot postion
     const { x, y } = robot.position;
     //stack at robot position
     const stack = grid[y][x];
 
-    if(stack.length === 0 && !robot.carrying) {
+    if(stack.length > 0 && !robot.carrying) {
     robot.carrying = stack.pop();
     //History Logging
     
@@ -47,7 +47,7 @@ router.post('/pick', (req, res) => {
     res.json({ carrying: robot.carrying });
 });
 
-//Drop block
+//Drop block!!!
 router.post('/drop', (req, res) => {
     
     const { x, y } = robot.position;
@@ -70,7 +70,9 @@ router.post('/drop', (req, res) => {
 
 // Get state
 router.get("/state", (req, res) => res.json({ 
-    grid, robot, history 
+    grid, 
+    robot, 
+    history 
 }));
 
 // Export CSV

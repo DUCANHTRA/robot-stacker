@@ -1,12 +1,15 @@
 // data/gridState.js
 let grid = [
-  [ ["B"], ["R"], ["B"] ],
-  [ ["R"], ["G"], ["R"] ],
-  [ ["B"], ["R"], ["B"] ]
+  [ ["R"], ["B"], ["G"] ],
+  [ ["G"], ["R"], ["B"] ],
+  [ ["G"], ["B"], ["R"] ]
 ];
 
 let robot = {
-  position: { x: 0, y: 0 },
+  position: { 
+    x: 0, 
+    y: 0 
+},
   carrying: null
 };
 
