@@ -19,21 +19,29 @@ body {
 }
 .cell {
   width: 70px;
-  height: 70px;
-  background: #e1d4c2;
-  border: 2px solid #9a8c7a;
+  min-height: 70px;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   justify-content: flex-end;
   position: relative;
+  border: 2px solid #9a8c7a;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
+
 .circle {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
+
+.cell:hover {
+  transform: scale(1.05);
+}
+
 .circle.r { background: red; }
 .circle.g { background: green; }
 .circle.b { background: blue; }
