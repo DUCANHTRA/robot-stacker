@@ -96,8 +96,21 @@ Develop both **frontend** and **backend** for the robot, ensuring:
 
 - **Data Structure:**
   ```js
-  const robot = { position: { x, y }, carrying: Color | null };
-  const grid = Array(3).fill(Array(3).fill([])); // 3x3 grid with stacks
+  let grid = [
+  [ ["R"], ["B"], ["G"] ],
+  [ ["G"], ["R"], ["B"] ],
+  [ ["G"], ["B"], ["R"] ]
+];
+
+let robot = {
+  position: { 
+    x: 0, 
+    y: 0 
+},
+  carrying: null
+};
+
+let history = [];
 
 
 ## Running the Project
