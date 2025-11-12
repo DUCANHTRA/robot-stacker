@@ -95,22 +95,27 @@ Develop both **frontend** and **backend** for the robot, ensuring:
     - Returns `valid: false` with a reason if the drop is invalid.
 
 - **Data Structure:**
-  ```js
-  let grid = [
+
+```js
+// 3x3 grid where each cell contains a stack of circles (R = Red, G = Green, B = Blue)
+let grid = [
   [ ["R"], ["B"], ["G"] ],
   [ ["G"], ["R"], ["B"] ],
   [ ["G"], ["B"], ["R"] ]
 ];
 
+// Robot object with current position and carried circle
 let robot = {
   position: { 
-    x: 0, 
-    y: 0 
-},
-  carrying: null
+    x: 0, // column index (0 = left)
+    y: 0  // row index (0 = top)
+  },
+  carrying: null // currently held circle (R, G, B) or null
 };
 
-let history = [];
+// Optional history array to track moves or actions
+let history = []; // Each entry can store { action: "move/pickup/drop", details: {...} }
+
 
 
 ## Running the Project
