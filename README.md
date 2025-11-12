@@ -103,7 +103,8 @@ let grid = [
   [ ["G"], ["R"], ["B"] ],
   [ ["G"], ["B"], ["R"] ]
 ];
-
+```
+```js
 // Robot object with current position and carried circle
 let robot = {
   position: { 
@@ -112,10 +113,11 @@ let robot = {
   },
   carrying: null // currently held circle (R, G, B) or null
 };
-
+```
+```js
 // Optional history array to track moves or actions
 let history = []; // Each entry can store { action: "move/pickup/drop", details: {...} }
-
+```
 
 
 ## Running the Project
