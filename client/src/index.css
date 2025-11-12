@@ -54,3 +54,20 @@ button {
   margin: 4px;
   padding: 6px 12px;
 }
+.warning {
+  background-color: #f7c5c5;
+  border: 1px solid #c44;
+  color: #600;
+  padding: 8px;
+  margin: 10px auto;
+  width: fit-content;
+  border-radius: 6px;
+  font-weight: bold;
+  animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}

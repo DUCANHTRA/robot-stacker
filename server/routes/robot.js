@@ -52,31 +52,37 @@ router.post('/pick', (req, res) => {
 });
 
 //Drop block
-router.post('/drop', (req, res) => {
-    
-    const { x, y } = robot.position;
-    const stack = grid[y][x];
+router.post("/drop", (req, res) => {
+  const { x, y } = robot.position;
+  const stack = grid[y][x];
+  const top = robot.carrying;
+  const bottom = stack.at(-1);
 
-    //Top: block robot is carrying
-    const top = robot.carrying;
-    //Bottom: block in the stack
-    const bottom = stack.at(-1);
-
-    if(top && canStack(bottom, top)) {
-
-        //Drop block into stack
-        stack.push(top);
-        history.push({
-            action: 'drop',
-            color: top,
-            x,
-            y
-        });
-        robot.carrying = null;
-    }
-    //Response: current robot and grid state
-    res.json({ robot, grid });
+  // No item to drop
+  if (!top) return res.json({ 
+    robot, 
+    grid, 
+    valid: false, 
+    reason: "No item" 
 });
+
+  // Invalid stack
+  if (!canStack(bottom, top)) {
+    return res.json({
+      robot,
+      grid,
+      valid: false,
+      reason: `Invalid stack: cannot place ${top} on ${bottom}`,
+    });
+  }
+
+  stack.push(top);
+  history.push({ action: "drop", color: top, x, y });
+  robot.carrying = null;
+
+  res.json({ robot, grid, valid: true });
+});
+
 
 // Get state
 router.get("/state", (req, res) => res.json({ 

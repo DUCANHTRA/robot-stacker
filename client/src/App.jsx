@@ -6,6 +6,7 @@ import { getState, move, pick, drop, exportCSV } from "./api";
 export default function App() {
   const [grid, setGrid] = useState([]);
   const [robot, setRobot] = useState({});
+  const [warning, setWarning] = useState("");
 
   const refresh = async () => {
     const res = await getState();
@@ -28,13 +29,18 @@ export default function App() {
   };
 
   const handleDrop = async () => {
-    await drop();
+    const res = await drop();
+    if (res.data.valid === false) {
+      setWarning(res.data.reason);
+      setTimeout(() => setWarning(""), 2000); // clear after 2s
+    }
     refresh();
   };
 
   return (
     <div className="app">
       <h1>🤖 Robot Stacker</h1>
+      {warning && <div className="warning">{warning}</div>}
       <Grid grid={grid} robot={robot} />
       <Controls
         onMove={handleMove}
