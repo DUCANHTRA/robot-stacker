@@ -30,13 +30,16 @@ router.post('/move', (req, res) => {
 router.post('/pick', (req, res) => {
     //robot postion
     const { x, y } = robot.position;
-    //stack at robot position
+    
+    //stacking at robot position
     const stack = grid[y][x];
 
     if(stack.length > 0 && !robot.carrying) {
-    robot.carrying = stack.pop();
-    //History Logging
     
+    //Pick top block
+    robot.carrying = stack.pop();
+    
+    //History Logging
     history.push({
         action: 'pick',
         color: robot.carrying,
@@ -44,18 +47,24 @@ router.post('/pick', (req, res) => {
         y
      });
     }
+    //Response: block robot is carrying
     res.json({ carrying: robot.carrying });
 });
 
-//Drop block!!!
+//Drop block
 router.post('/drop', (req, res) => {
     
     const { x, y } = robot.position;
     const stack = grid[y][x];
+
+    //Top: block robot is carrying
     const top = robot.carrying;
+    //Bottom: block in the stack
     const bottom = stack.at(-1);
 
     if(top && canStack(bottom, top)) {
+
+        //Drop block into stack
         stack.push(top);
         history.push({
             action: 'drop',
@@ -65,6 +74,7 @@ router.post('/drop', (req, res) => {
         });
         robot.carrying = null;
     }
+    //Response: current robot and grid state
     res.json({ robot, grid });
 });
 
