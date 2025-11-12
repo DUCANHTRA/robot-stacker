@@ -54,7 +54,12 @@ These assumptions clarify ambiguities not explicitly defined in the brief:
 
 | Option | Considered | Rejected Because |
 |--------|------------|----------------|
-| Flat grid (no stacks) | Simple to render | Violates stacking rules |
+| Flat grid (stacking in 2D column) | Simple to render but doesn’t satisfy stacking rules and there’s not enough space. | Not enough space to stack all balls on the right side of the 2D grid. 
+Violates the stacking requirement of “moving all circles and stacking on the right side” 
+Contradicts with the initial setup positions shown in the problem image. |
+| Stacking outside the grid | Considered to instead of in cell stacking implementation | Breaks spatial constraints inside the grid.
+Creates undefined positions beyond the grid.
+Complicates the problem and visualization.|
 | Robot moves physically like animation steps | Improves realism | Not essential for logic; focus kept on correctness |
 | Multiple circle pickup | Simulates batch carrying | Adds unnecessary complexity |
 | Frontend-only logic | No backend | Violates test requirements; complicates rule validation |
