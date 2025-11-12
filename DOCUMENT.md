@@ -44,7 +44,7 @@ These assumptions clarify ambiguities not explicitly defined in the brief:
 | UI Layout | Grid rendered as nested `<div>`s with CSS flex | Direct mapping between visual layout and data |
 | Robot Indicator | 🤖 icon overlay at robot position | Visual understanding of state and movement |
 | Visual Stack Growth | `flex-direction: column-reverse` | New circles appear on top visually |
-| Color rule warnings | Backend `/drop` checks `canStack`; frontend shows fading warning `<div>` | Improves UX for invalid stacking attempts |
+| Color rule warnings | Backend `/drop` checks `canStack`. If invalid, return valid: false with a reason; frontend shows fading warning `<div>` | Improves UX for invalid stacking attempts |
 | CSV Export | Backend uses `json2csv` | Simple and avoids reinventing CSV formatting |
 | Scalability | Supports NxN grids and persistent DB | Data-driven logic, not hard-coded |
 
