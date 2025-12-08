@@ -17,5 +17,11 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use("/api", robotRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`));
+// Only start server if not in Vercel serverless environment
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`));
+}
+
+// Export for Vercel serverless functions
+module.exports = app;
