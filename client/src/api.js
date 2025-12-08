@@ -1,12 +1,11 @@
 import axios from "axios";
-
-const API = "http://localhost:5000/api";
+const API = import.meta.env.VITE_API_URL;
 
 // Fetch the current state of the game
 export const getState = () => axios.get(`${API}/state`);
 // Send commands to the server
-export const move = (dir) => axios.post(`${API}/move`, { 
-    direction: dir 
+export const move = (dir) => axios.post(`${API}/move`, {
+    direction: dir
 });
 // Pick up an item
 export const pick = () => axios.post(`${API}/pick`);
